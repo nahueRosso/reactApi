@@ -1,0 +1,28 @@
+import {useEffect,useState} from 'react'
+
+const App = () => {
+    
+const [nombre, setNombre] = useState("");    
+const [imagen, setImagen] = useState("");
+
+    useEffect(() =>{const url = 'http://randomuser.me/api/'
+    const peticion=fetch(url)
+    peticion
+    .then(datos=>datos.json())
+    .then(lectura=>{
+        setNombre(`${lectura.Results[0].name.first} ${lectura.Results[0].name.last}`)})
+        setImagen(`${lectura.Results[0]}`)
+        .catch(()=>console.log("hay error"))
+},[])
+
+    return (
+    <div>
+        <h1>Persona</h1>
+        <div><img src={imagen}/></div>
+        <h2>{nombre}</h2> 
+      
+    </div>
+  )
+}
+
+export default fetch
